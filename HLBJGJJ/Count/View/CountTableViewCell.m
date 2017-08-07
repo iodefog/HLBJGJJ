@@ -8,7 +8,6 @@
 
 #import "CountTableViewCell.h"
 #import "StatusBean.h"
-#import "Masonry.h"
 @interface CountTableViewCell()
 
 #define CountTableViewCellHeight 80

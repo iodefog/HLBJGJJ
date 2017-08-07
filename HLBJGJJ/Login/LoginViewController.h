@@ -7,15 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <GoogleMobileAds/GoogleMobileAds.h>
+//#import <GoogleMobileAds/GoogleMobileAds.h>
 
 @interface LoginViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIButton *loginTypeButton;
 @property (weak, nonatomic) IBOutlet UITextField *cardNumber;
 @property (weak, nonatomic) IBOutlet UITextField *password;
 @property (weak, nonatomic) IBOutlet UIImageView *securityCode;
 @property (weak, nonatomic) IBOutlet UITextField *code;
+@property (weak, nonatomic) IBOutlet UIView *loginTypeBgView;
+@property (weak, nonatomic) IBOutlet UIView *catdBgView;
+@property (weak, nonatomic) IBOutlet UIView *securityBgView;
 
-@property (weak, nonatomic) IBOutlet GADBannerView *adView;
+//@property (weak, nonatomic) IBOutlet GADBannerView *adView;
 
 - (IBAction)refreshSecurityCode:(id)sender;
 - (IBAction)login:(id)sender;

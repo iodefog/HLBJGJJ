@@ -13,6 +13,7 @@
 #import "CountGlobalTableViewCell.h"
 #import "CountInfoTableViewController.h"
 #import "LoginViewController.h"
+#import "WebViewController.h"
 
 @interface CountInfoViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -29,7 +30,7 @@
     // Do any additional setup after loading the view.
 
     self.title = @"开户单位";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:self action:@selector(rightClicked:)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"设置" style:UIBarButtonItemStyleDone target:self action:@selector(rightClicked:)];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"注销" style:UIBarButtonItemStyleDone target:self action:@selector(leftClicked:)];
 
     [self.tableView registerClass:[CountTableViewCell class] forCellReuseIdentifier:@"CountTableViewCell"];
@@ -67,7 +68,7 @@
     CountTableViewCell *cell = nil;
     id object = [[self.data objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 
-    if ([object isKindOfClass:[NSDictionary class]]) {
+    if ([object isKindOfClass:[NSArray class]]) {
        cell = [tableView dequeueReusableCellWithIdentifier:@"CountGlobalTableViewCell" forIndexPath:indexPath];
     }
     else {
@@ -95,6 +96,15 @@
             countTableVC.object = bean;
             countTableVC.title = [bean companyName];
             [self.navigationController pushViewController:countTableVC animated:YES];
+        }
+        else {
+            NSArray *object = [[self.data objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+            if ([object isKindOfClass:[NSArray class]]) {
+                WebViewController *webVC = [[WebViewController alloc] init];
+                webVC.title = @"个人缴存明细";
+                webVC.url = [object lastObject];
+                [self.navigationController pushViewController:webVC animated:YES];
+            }
         }
     }
 }

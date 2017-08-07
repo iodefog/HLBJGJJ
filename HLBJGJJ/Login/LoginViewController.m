@@ -20,15 +20,17 @@
 #define kCardPassward @"cardPwd"
 
 
-@interface LoginViewController (){
+@interface LoginViewController ()<UITextFieldDelegate>
+{
     
     BJBrowser * _browser;
     NSMutableDictionary *_lbList;
     
     
 }
+@property (weak, nonatomic) IBOutlet UIImageView *iconView;
 
-@property(nonatomic, strong) GADInterstitial *interstitial;
+//@property(nonatomic, strong) GADInterstitial *interstitial;
 
 @end
 
@@ -44,18 +46,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSDictionary *infoPlist = [[NSBundle mainBundle] infoDictionary];
+    NSString *icon = [[infoPlist valueForKeyPath:@"CFBundleIcons.CFBundlePrimaryIcon.CFBundleIconFiles"] lastObject];
+    self.iconView.image = [UIImage imageNamed:icon];
     
+    self.loginTypeBgView.layer.cornerRadius = 5;
+    self.loginTypeBgView.layer.borderColor = [[UIColor colorWithRed:200/255. green:200/255. blue:200/255. alpha:1.0] CGColor];
+    self.loginTypeBgView.layer.borderWidth = 0.5;
     
+    self.catdBgView.layer.cornerRadius = 5;
+    self.catdBgView.layer.borderColor = [[UIColor colorWithRed:200/255. green:200/255. blue:200/255. alpha:1.0] CGColor];
+    self.catdBgView.layer.borderWidth = 0.5;
+
     
+    self.securityBgView.layer.cornerRadius = 5;
+    self.securityBgView.layer.borderColor = [[UIColor colorWithRed:200/255. green:200/255. blue:200/255. alpha:1.0] CGColor];
+    self.securityBgView.layer.borderWidth = 0.5;
+
     
     if (true) {
 //        self.adView.adUnitID = @"ca-app-pub-4825035857684521/7836686290";
         
         //self.adView.adUnitID = @"ca-app-pub-3940256099942544/2934735716";
         
-        self.adView.rootViewController = self;
+//        self.adView.rootViewController = self;
         
-        GADRequest *request = [GADRequest request];
+//        GADRequest *request = [GADRequest request];
         // Requests test ads on devices you specify. Your test device ID is printed to the console when
         // an ad request is made. GADBannerView automatically returns test ads when running on a
         // simulator.
@@ -63,21 +79,22 @@
 //                                @"2ed19fd608c97b865be80811f226e03a"  // Eric's iPod Touch
 //                                ];
         
-        [self.adView loadRequest:request];
+//        [self.adView loadRequest:request];
     }
     
-    if (true) {
-        
+//    if (true) {
+    
 //        self.interstitial = [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-4825035857684521/7836686290"];
         
-        GADRequest *request = [GADRequest request];
+//        GADRequest *request = [GADRequest request];
         // Requests test ads on test devices.
 //        request.testDevices = @[@"2ed19fd608c97b865be80811f226e03a"];
-        [self.interstitial loadRequest:request];
+//        [self.interstitial loadRequest:request];
         
 
-    }
+//    }
 
+    [self.loginTypeButton setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"lb" ofType:@"plist"];
     _lbList = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
@@ -96,9 +113,9 @@
     }];
     
     NSString * defaultName = [[NSUserDefaults standardUserDefaults] valueForKey:kLBName];
-    if (defaultName == nil) {
-        _cardNumber.placeholder = @"身份证";
-    }
+    
+    _cardNumber.placeholder = defaultName?:@"身份证";
+    [self.loginTypeButton setTitle:defaultName?:@"身份证" forState:UIControlStateNormal];
     
     
     NSString * lb = [[NSUserDefaults standardUserDefaults] valueForKey:kLBValue];
@@ -138,6 +155,14 @@
 
 - (IBAction)login:(id)sender {
     
+    if (!_cardNumber.text) {
+        [SVProgressHUD showErrorWithStatus:@"请填写账户"];
+        return;
+    }
+    else if (!_password.text) {
+        [SVProgressHUD showErrorWithStatus:@"请输入密码"];
+        return;
+    }
     
 //    if (true) {
 //        if ([self.interstitial isReady]) {
@@ -180,23 +205,17 @@
         __block CountInfoViewController * blockController = infoController;
         StatusBean *bean = statusList.firstObject;
         if (bean) {
-            [browser refreshGlobalInfo:bean.companyLink status:^(NSArray<StatusBean *> *statusList) {
-                NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+            [browser refreshGlobalInfo:bean.companyLink status:^(NSArray *statusList) {
                 for (NSUInteger i = 0 ; i < statusList.count ; i ++ ) {
                     NSString *str = [(id)statusList[i] stringByReplacingOccurrencesOfString:@" " withString:@""];
                     
                     if ([str hasPrefix: @"姓名"]) {
                         self.title = [NSString stringWithFormat:@"%@的开户单位",statusList[i+1]];
-                    }
-                    else if ([str hasPrefix:@"当前余额"]) {
-                        [dic setObject:@"当前余额:" forKey:@"tipAmount"];
-                        [dic setObject:statusList[i+1] forKey:@"amount"];
-                    }
-                    else if ([str hasPrefix:@"最后业务日期"]) {
-                        [dic setObject:[NSString stringWithFormat:@"%@:%@",@"最后业务日期", statusList[i+1]] forKey:@"lastTime"];
+                        break;
                     }
                 }
-                [blockController.data insertObject:@[dic] atIndex:0];
+                
+                [blockController.data insertObject:@[statusList] atIndex:0];
                 [blockController.tableView reloadData];
             }];
         }
@@ -216,7 +235,8 @@
             [pref setValue:name forKey:kLBName];
             
             _cardNumber.placeholder = name;
-            
+            [self.loginTypeButton setTitle:name forState:UIControlStateNormal];
+
             NSString * number = [pref valueForKey:[kCardNumber stringByAppendingString:key]];
             NSString * password = [pref valueForKey:[kCardPassward stringByAppendingString:key]];
             if (number != nil) {
@@ -232,11 +252,19 @@
     
     
     
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"放弃" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
         
     }];
     [insertPhotoController addAction:cancel];
     
     [self presentViewController:insertPhotoController animated:YES completion:nil];
 }
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField{
+    _cardNumber.text = nil;
+    _password.text = nil;
+    [NSUserDefaults resetStandardUserDefaults];
+    return YES;
+}
+
 @end

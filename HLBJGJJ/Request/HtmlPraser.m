@@ -22,6 +22,22 @@
     for (IGXMLNode * node in contents) {
         [values addObject:[node text]];
     }
+
+    NSString *url = nil;
+    NSArray *array = [html componentsSeparatedByString:@"javascript:window.open('gjj_cxls.jsp?"];
+    
+    if (array .count >1) {
+        array = [array[1] componentsSeparatedByString:@";"];
+    }
+    
+    if (array.count >0) {
+        url = [NSString stringWithFormat:@"http://www.bjgjj.gov.cn/wsyw/wscx/gjj_cxls.jsp?%@",array[0]];
+    }
+    
+    if (url) {
+        [values addObject:url];
+    }
+    
     return values;
 }
 //*[@id="new-mytable"]/tbody/tr[2]/td[2]/div

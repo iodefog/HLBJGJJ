@@ -11,7 +11,7 @@
 #import "StatusBean.h"
 
 
-typedef void(^Response) (NSArray<StatusBean*>* statusList);
+typedef void(^Response) (NSArray* statusList);
 typedef void(^CaptchaImage) (UIImage* captchaImage);
 
 @interface BJBrowser : NSObject

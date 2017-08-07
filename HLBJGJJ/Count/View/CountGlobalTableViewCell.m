@@ -23,6 +23,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         [self createUI];
     }
     return self;
@@ -59,12 +60,21 @@
     self.lastTimeLabel.frame = CGRectMake(15, CGRectGetMaxY(self.amountLabel.bounds)+20, CGRectGetWidth(self.bounds)- 30, 40);
 }
 
-- (void)setObject:(NSDictionary *)object{
-    if ([object isKindOfClass:[NSDictionary class]]) {
+- (void)setObject:(NSArray *)object{
+    
+    if ([object isKindOfClass:[NSArray class]]) {
         _object = object;
-        self.tipAmountLabel.text = object[@"tipAmount"];
-        self.amountLabel.text = [NSString stringWithFormat:@"%@元",object[@"amount"]];
-        self.lastTimeLabel.text = object[@"lastTime"];
+        
+        for (NSUInteger i = 0 ; i < object.count ; i ++ ) {
+            NSString *str = [(id)object[i] stringByReplacingOccurrencesOfString:@" " withString:@""];
+            if ([str hasPrefix:@"当前余额"]) {
+                self.tipAmountLabel.text = @"当前余额:";
+                self.amountLabel.text = [NSString stringWithFormat:@"%@元",object[i+1]];
+            }
+            else if ([str hasPrefix:@"最后业务日期"]) {
+                self.lastTimeLabel.text = [NSString stringWithFormat:@"%@:%@",@"最后业务日期", object[i+1]];
+            }
+        }
     }
 }
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7715FC01F3806E700A84E4F /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7715FBF1F3806E700A84E4F /* WebViewController.m */; };
+		C7715FC31F3809DE00A84E4F /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C7715FC21F3809DE00A84E4F /* UserInfo.m */; };
 		C77E29191F332EF700F96DCD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C77E28D61F332EF700F96DCD /* AppDelegate.m */; };
 		C77E291A1F332EF700F96DCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C77E28D71F332EF700F96DCD /* Assets.xcassets */; };
 		C77E291B1F332EF700F96DCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C77E28D81F332EF700F96DCD /* LaunchScreen.storyboard */; };
@@ -49,6 +51,10 @@
 		3A3F44D21C565AAF0061817B /* HLBJGJJ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HLBJGJJ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48EEE92535826E05FF33352B /* Pods-HLBJGJJ.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLBJGJJ.release.xcconfig"; path = "Pods/Target Support Files/Pods-HLBJGJJ/Pods-HLBJGJJ.release.xcconfig"; sourceTree = "<group>"; };
 		7A1ABC23F2626AA9635A268E /* Pods-HLBJGJJ.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLBJGJJ.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HLBJGJJ/Pods-HLBJGJJ.debug.xcconfig"; sourceTree = "<group>"; };
+		C7715FBE1F3806E700A84E4F /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		C7715FBF1F3806E700A84E4F /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		C7715FC11F3809DE00A84E4F /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		C7715FC21F3809DE00A84E4F /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 		C77E28D51F332EF700F96DCD /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C77E28D61F332EF700F96DCD /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C77E28D71F332EF700F96DCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -161,18 +167,18 @@
 				C77E28D71F332EF700F96DCD /* Assets.xcassets */,
 				C77E28D81F332EF700F96DCD /* LaunchScreen.storyboard */,
 				C77E28DA1F332EF700F96DCD /* Main.storyboard */,
+				C77E29071F332EF700F96DCD /* Request */,
+				C77E29041F332EF700F96DCD /* NavigationController */,
+				C77E29001F332EF700F96DCD /* Login */,
+				C77E28F11F332EF700F96DCD /* Helper */,
+				C77E28E11F332EF700F96DCD /* Count */,
 				C77E28DC1F332EF700F96DCD /* BaseController */,
 				C77E28DF1F332EF700F96DCD /* BJGJJ.xcdatamodeld */,
-				C77E28E11F332EF700F96DCD /* Count */,
 				C77E28EF1F332EF700F96DCD /* FlatUIButton.h */,
 				C77E28F01F332EF700F96DCD /* FlatUIButton.m */,
-				C77E28F11F332EF700F96DCD /* Helper */,
 				C77E28FE1F332EF700F96DCD /* Info.plist */,
 				C77E28FF1F332EF700F96DCD /* lb.plist */,
-				C77E29001F332EF700F96DCD /* Login */,
 				C77E29031F332EF700F96DCD /* main.m */,
-				C77E29041F332EF700F96DCD /* NavigationController */,
-				C77E29071F332EF700F96DCD /* Request */,
 				C77E29121F332EF700F96DCD /* Resource */,
 			);
 			path = HLBJGJJ;
@@ -204,6 +210,8 @@
 				C77E28E41F332EF700F96DCD /* CountInfoTableViewController.m */,
 				C77E28E51F332EF700F96DCD /* CountInfoViewController.h */,
 				C77E28E61F332EF700F96DCD /* CountInfoViewController.m */,
+				C7715FBE1F3806E700A84E4F /* WebViewController.h */,
+				C7715FBF1F3806E700A84E4F /* WebViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -213,6 +221,8 @@
 			children = (
 				C77E28E81F332EF700F96DCD /* StatusBean.h */,
 				C77E28E91F332EF700F96DCD /* StatusBean.m */,
+				C7715FC11F3809DE00A84E4F /* UserInfo.h */,
+				C7715FC21F3809DE00A84E4F /* UserInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -382,7 +392,6 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-HLBJGJJ/Pods-HLBJGJJ-resources.sh",
 				"${PODS_ROOT}/CSSSelectorConverter/CSSSelectorConverter/CSSSelectorGrammar.txt",
 				"${PODS_ROOT}/CSSSelectorConverter/CSSSelectorConverter/CSSSelectorParser.plist",
-				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -437,6 +446,7 @@
 				C77E292F1F332EF700F96DCD /* CCFNavigationController.m in Sources */,
 				C77E29201F332EF700F96DCD /* CountInfoViewController.m in Sources */,
 				C77E29211F332EF700F96DCD /* StatusBean.m in Sources */,
+				C7715FC31F3809DE00A84E4F /* UserInfo.m in Sources */,
 				C77E29281F332EF700F96DCD /* NSString+Regular.m in Sources */,
 				C77E29241F332EF700F96DCD /* FlatUIButton.m in Sources */,
 				C77E29301F332EF700F96DCD /* BJBrowser.m in Sources */,
@@ -453,6 +463,7 @@
 				C77E291D1F332EF700F96DCD /* TransDataUIViewController.m in Sources */,
 				C77E292E1F332EF700F96DCD /* main.m in Sources */,
 				C77E29341F332EF700F96DCD /* HtmlPraser.m in Sources */,
+				C7715FC01F3806E700A84E4F /* WebViewController.m in Sources */,
 				C77E29261F332EF700F96DCD /* NSArray+Converter.m in Sources */,
 				C77E29271F332EF700F96DCD /* NSString+Converter.m in Sources */,
 				C77E291E1F332EF700F96DCD /* BJGJJ.xcdatamodeld in Sources */,
@@ -569,7 +580,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = NRHHX365ZN;
 				INFOPLIST_FILE = "$(SRCROOT)/HLBJGJJ/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.andforce.HLBJGJJ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -583,7 +594,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = NRHHX365ZN;
 				INFOPLIST_FILE = "$(SRCROOT)/HLBJGJJ/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.andforce.HLBJGJJ;
 				PRODUCT_NAME = "$(TARGET_NAME)";
