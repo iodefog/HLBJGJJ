@@ -339,7 +339,7 @@
 				TargetAttributes = {
 					3A3F44D11C565AAF0061817B = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 4AW78593E8;
+						DevelopmentTeam = M675EFBDE2;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -573,13 +573,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4AW78593E8;
+				DEVELOPMENT_TEAM = M675EFBDE2;
 				INFOPLIST_FILE = "$(SRCROOT)/HLBJGJJ/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lhl.HLBJGJJ;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lhl.hlbjgjj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "eea16c42-a343-4a0e-ad91-e8d1a3d2c62a";
-				PROVISIONING_PROFILE_SPECIFIER = develop_universal_profile;
+				PROVISIONING_PROFILE = "678efd99-3e7e-4e4a-8a6d-c5f5df2bce3c";
+				PROVISIONING_PROFILE_SPECIFIER = hlbjgjj_developer;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -590,14 +590,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4AW78593E8;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = M675EFBDE2;
 				INFOPLIST_FILE = "$(SRCROOT)/HLBJGJJ/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lhl.HLBJGJJ;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lhl.hlbjgjj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "eea16c42-a343-4a0e-ad91-e8d1a3d2c62a";
-				PROVISIONING_PROFILE_SPECIFIER = develop_universal_profile;
+				PROVISIONING_PROFILE = "805fe4b7-55ef-4c12-ae94-4cace936478d";
+				PROVISIONING_PROFILE_SPECIFIER = hlbjgjj_distribution;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

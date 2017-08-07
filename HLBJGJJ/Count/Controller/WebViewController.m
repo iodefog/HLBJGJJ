@@ -27,14 +27,11 @@
     self.webView.delegate = self;
     [self.view addSubview:self.webView];
     
-    
+    [SVProgressHUD show];
+
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    [SVProgressHUD show];
-}
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [SVProgressHUD dismiss];

@@ -29,7 +29,6 @@
     
     
 }
-@property (weak, nonatomic) IBOutlet UIImageView *iconView;
 
 //@property(nonatomic, strong) GADInterstitial *interstitial;
 
@@ -63,11 +62,61 @@
     self.securityBgView.layer.borderColor = [[UIColor colorWithRed:200/255. green:200/255. blue:200/255. alpha:1.0] CGColor];
     self.securityBgView.layer.borderWidth = 0.5;
 
+   
+    
     [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top).offset(64);
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.width.mas_lessThanOrEqualTo(350);
         make.height.equalTo(self.iconView.mas_width);
     }];
     
-    if (true) {
+    [self.loginTypeBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.iconView.mas_bottom).offset(40);
+        make.right.equalTo(self.view).offset(-20);
+        make.height.mas_equalTo(33);
+        make.left.mas_equalTo(100);
+    }];
+    
+    [self.loginTypeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.loginTypeBgView.mas_left).offset(5);
+        make.right.equalTo(self.loginTypeBgView.mas_right).offset(-5);
+        make.height.equalTo(self.loginTypeBgView);
+        make.centerY.equalTo(self.loginTypeBgView);
+    }];
+    
+    [self.catdBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.loginTypeBgView);
+        make.height.equalTo(self.loginTypeBgView);
+        make.left.mas_equalTo(100);
+        make.top.equalTo(self.loginTypeBgView.mas_bottom).offset(10);
+
+    }];
+
+    [self.cardNumber mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.catdBgView.mas_left).offset(5);
+        make.right.equalTo(self.catdBgView.mas_right).offset(-5);
+        make.height.equalTo(self.catdBgView);
+        make.centerY.equalTo(self.catdBgView);
+    }];
+    
+    [self.securityBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.loginTypeBgView);
+        make.height.equalTo(self.loginTypeBgView);
+        make.left.mas_equalTo(100);
+        make.top.equalTo(self.catdBgView.mas_bottom).offset(10);
+    }];
+    
+    [self.password mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.securityBgView.mas_left).offset(5);
+        make.right.equalTo(self.securityBgView.mas_right).offset(-5);
+        make.height.equalTo(self.securityBgView);
+        make.centerY.equalTo(self.securityBgView);
+    }];
+
+    
+    
+//    if (true) {
 //        self.adView.adUnitID = @"ca-app-pub-4825035857684521/7836686290";
         
         //self.adView.adUnitID = @"ca-app-pub-3940256099942544/2934735716";
@@ -83,7 +132,7 @@
 //                                ];
         
 //        [self.adView loadRequest:request];
-    }
+//    }
     
 //    if (true) {
     
@@ -226,7 +275,7 @@
    }];
 }
 
-- (IBAction)changeCountType:(id)sender {
+- (IBAction)changeCountType:(UIButton *)sender {
     UIAlertController * insertPhotoController = [UIAlertController alertControllerWithTitle:@"切换登录方式" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     NSArray* keys = _lbList.allKeys;
@@ -260,7 +309,19 @@
     }];
     [insertPhotoController addAction:cancel];
     
-    [self presentViewController:insertPhotoController animated:YES completion:nil];
+    
+    if([[self class] deviceIsPhone]){
+        [self presentViewController:insertPhotoController animated:YES completion:nil];
+        
+    }else{
+        
+        UIPopoverPresentationController *popPresenter = [insertPhotoController
+                                                         popoverPresentationController];
+        popPresenter.sourceView = sender; // 这就是挂靠的对象
+        popPresenter.sourceRect = sender.bounds;
+        [self presentViewController:insertPhotoController animated:YES completion:nil];
+    }
+//    [self presentViewController:insertPhotoController animated:YES completion:nil];
 }
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField{
@@ -268,6 +329,27 @@
     _password.text = nil;
     [NSUserDefaults resetStandardUserDefaults];
     return YES;
+}
+
+// 返回时否是手机
++ (BOOL)deviceIsPhone{
+    
+    BOOL _isIdiomPhone = YES;// 默认是手机
+    UIDevice *currentDevice = [UIDevice currentDevice];
+    
+    // 项目里只用到了手机和pad所以就判断两项
+    // 设备是手机
+    if (currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        
+        _isIdiomPhone = YES;
+    }
+    // 设备室pad
+    else if (currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad){
+        
+        _isIdiomPhone = NO;
+    }
+    
+    return _isIdiomPhone;
 }
 
 @end
