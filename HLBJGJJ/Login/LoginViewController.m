@@ -12,6 +12,7 @@
 #import <SVProgressHUD.h>
 #import "CCFNavigationController.h"
 #import "CountInfoViewController.h"
+#import "Masonry.h"
 
 #define kLBValue @"lb"
 #define kLBName @"lbName"
@@ -36,6 +37,7 @@
 
 @implementation LoginViewController
 
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.securityCode.image = nil;
@@ -46,9 +48,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSDictionary *infoPlist = [[NSBundle mainBundle] infoDictionary];
-    NSString *icon = [[infoPlist valueForKeyPath:@"CFBundleIcons.CFBundlePrimaryIcon.CFBundleIconFiles"] lastObject];
-    self.iconView.image = [UIImage imageNamed:icon];
+    self.iconView.image = [UIImage imageNamed:@"AppDefaultIcon"];
     
     self.loginTypeBgView.layer.cornerRadius = 5;
     self.loginTypeBgView.layer.borderColor = [[UIColor colorWithRed:200/255. green:200/255. blue:200/255. alpha:1.0] CGColor];
@@ -63,6 +63,9 @@
     self.securityBgView.layer.borderColor = [[UIColor colorWithRed:200/255. green:200/255. blue:200/255. alpha:1.0] CGColor];
     self.securityBgView.layer.borderWidth = 0.5;
 
+    [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.equalTo(self.iconView.mas_width);
+    }];
     
     if (true) {
 //        self.adView.adUnitID = @"ca-app-pub-4825035857684521/7836686290";
@@ -170,7 +173,7 @@
 //        }
 //        return;
 //    }
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD show];
     NSString * lb = [[NSUserDefaults standardUserDefaults] valueForKey:kLBValue];
     if (lb == nil) {
         lb = @"1";

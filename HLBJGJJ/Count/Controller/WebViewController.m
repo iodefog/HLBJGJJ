@@ -8,6 +8,7 @@
 
 #import "WebViewController.h"
 #import <UIKit/UIKit.h>
+#import "SVProgressHUD.h"
 /**
  *  http://www.bjgjj.gov.cn/wsyw/wscx/gjj_cxls.jsp?xm=JiMyNjQ0NjsmIzMyNDE4OyYjMjExNDc7&grdjh=41022119900528085800&sfzh=GJJ015602936&bh=127&jczt=%BD%C9%B4%E6
  
@@ -26,7 +27,18 @@
     self.webView.delegate = self;
     [self.view addSubview:self.webView];
     
+    
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.url]]];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [SVProgressHUD show];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    [SVProgressHUD dismiss];
+
 }
 
 - (void)didReceiveMemoryWarning {

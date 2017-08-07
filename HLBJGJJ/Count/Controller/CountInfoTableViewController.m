@@ -24,7 +24,7 @@
     [super viewDidLoad];
     _browser = [[BJBrowser alloc] init];
     
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD show];
     __weak typeof(self) mySelf = self;
     [_browser refreshGlobalInfo:self.object.companyLink status:^(NSArray<StatusBean *> *statusList) {
         mySelf.dataArray = statusList;

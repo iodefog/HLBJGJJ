@@ -69,11 +69,11 @@
     // FormData
     NSString * encodeNumber = [enc strEncode:number];
     NSString * encodePassword = [enc strEncode:password];
-    NSDictionary * paramaters = @{@"lb"             :lb,
-                                  @"bh"             : encodeNumber,
-                                  @"mm"             : encodePassword,
-                                  @"gjjcxjjmyhpppp" :code,
-                                  @"lk"             :_lk
+    NSDictionary * paramaters = @{@"lb"             :lb?:@"",
+                                  @"bh"             : encodeNumber?:@"",
+                                  @"mm"             : encodePassword?:@"",
+                                  @"gjjcxjjmyhpppp" :code?:@"",
+                                  @"lk"             :_lk?:@""
                                   };
     // 设置Headers
     NSDictionary * headers = @{
@@ -84,7 +84,7 @@
                                @"Accept-Language"       :@"zh-CN",
                                @"Accept-Encoding"       :@"gzip, deflate",
                                @"Accept"                :@"*/*",
-                               @"Cookie"                :_cookie
+                               @"Cookie"                :_cookie?:@""
                                };
     
     [_browser POST:kChoice headers:headers formData:paramaters response:^(NSString *responseHtml) {
