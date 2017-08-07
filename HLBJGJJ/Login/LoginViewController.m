@@ -65,14 +65,14 @@
    
     
     [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.mas_top).offset(64);
+        make.top.equalTo(self.view.mas_top).offset(74);
         make.centerX.equalTo(self.view.mas_centerX);
         make.width.mas_lessThanOrEqualTo(350);
         make.height.equalTo(self.iconView.mas_width);
     }];
     
     [self.loginTypeBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.iconView.mas_bottom).offset(40);
+        make.top.equalTo(self.iconView.mas_bottom).offset(30);
         make.right.equalTo(self.view).offset(-20);
         make.height.mas_equalTo(33);
         make.left.mas_equalTo(100);
@@ -114,7 +114,44 @@
         make.centerY.equalTo(self.securityBgView);
     }];
 
+    [self.loginTypeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(15);
+        make.width.mas_equalTo(80);
+        make.centerY.equalTo(self.loginTypeBgView.mas_centerY);
+    }];
     
+    [self.cardLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(15);
+        make.width.mas_equalTo(80);
+        make.centerY.equalTo(self.catdBgView.mas_centerY);
+    }];
+    
+    [self.passworldLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view).offset(15);
+        make.width.mas_equalTo(80);
+        make.centerY.equalTo(self.securityBgView.mas_centerY);
+    }];
+    
+    [self.securityCode mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.securityBgView.mas_bottom).offset(30);
+        make.width.mas_equalTo(80);
+        make.height.mas_equalTo(30);
+        make.centerX.equalTo(self.view.mas_centerX).offset(-60);
+    }];
+    
+    [self.code mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(80);
+        make.height.mas_equalTo(30);
+        make.centerX.equalTo(self.view.mas_centerX).offset(60);
+        make.centerY.equalTo(self.securityCode.mas_centerY);
+    }];
+    
+    [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left).offset(30);
+        make.right.equalTo(self.view.mas_right).offset(-30);
+        make.top.equalTo(self.code.mas_bottom).offset(40);
+        make.height.mas_equalTo(44);
+    }];
     
 //    if (true) {
 //        self.adView.adUnitID = @"ca-app-pub-4825035857684521/7836686290";
@@ -206,6 +243,7 @@
 }
 
 - (IBAction)login:(id)sender {
+    [[UIApplication sharedApplication].keyWindow endEditing:YES];
     
     if (!_cardNumber.text) {
         [SVProgressHUD showErrorWithStatus:@"请填写账户"];
@@ -324,12 +362,42 @@
 //    [self presentViewController:insertPhotoController animated:YES completion:nil];
 }
 
+#pragma mark - textfile delegate
 - (BOOL)textFieldShouldClear:(UITextField *)textField{
     _cardNumber.text = nil;
     _password.text = nil;
     [NSUserDefaults resetStandardUserDefaults];
     return YES;
 }
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    if([[self class] deviceIsPhone]){
+        
+        [self.iconView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.view.mas_top).offset(74-216);
+            make.centerX.equalTo(self.view.mas_centerX);
+            make.width.mas_lessThanOrEqualTo(350);
+            make.height.equalTo(self.iconView.mas_width);
+        }];
+        
+        [self.view setNeedsLayout];
+    }
+}
+
+-  (void)textFieldDidEndEditing:(UITextField *)textField{
+    if([[self class] deviceIsPhone]){
+        
+        [self.iconView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.view.mas_top).offset(74);
+            make.centerX.equalTo(self.view.mas_centerX);
+            make.width.mas_lessThanOrEqualTo(350);
+            make.height.equalTo(self.iconView.mas_width);
+        }];
+        [self.view setNeedsLayout];
+    }
+}
+
+#pragma mark ---
 
 // 返回时否是手机
 + (BOOL)deviceIsPhone{
