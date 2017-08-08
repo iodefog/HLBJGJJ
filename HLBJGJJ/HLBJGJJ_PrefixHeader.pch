@@ -1,0 +1,24 @@
+//
+//  HLBJGJJ_PrefixHeader.pch
+//  HLBJGJJ
+//
+//  Created by LHL on 2017/8/8.
+//  Copyright © 2017年 andforce. All rights reserved.
+//
+
+#ifndef HLBJGJJ_PrefixHeader_pch
+#define HLBJGJJ_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+#ifdef DEBUG
+#define NSLog(...) NSLog(__VA_ARGS__)
+#define debugMethod() NSLog(@"%s", __func__)
+#else
+#define NSLog(...)
+#define debugMethod()
+#endif
+
+#endif /* HLBJGJJ_PrefixHeader_pch */

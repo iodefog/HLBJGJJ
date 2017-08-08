@@ -51,6 +51,7 @@
 		3A3F44D21C565AAF0061817B /* HLBJGJJ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HLBJGJJ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48EEE92535826E05FF33352B /* Pods-HLBJGJJ.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLBJGJJ.release.xcconfig"; path = "Pods/Target Support Files/Pods-HLBJGJJ/Pods-HLBJGJJ.release.xcconfig"; sourceTree = "<group>"; };
 		7A1ABC23F2626AA9635A268E /* Pods-HLBJGJJ.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLBJGJJ.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HLBJGJJ/Pods-HLBJGJJ.debug.xcconfig"; sourceTree = "<group>"; };
+		C72838291F394F4E00FB607E /* HLBJGJJ_PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLBJGJJ_PrefixHeader.pch; sourceTree = "<group>"; };
 		C7715FBE1F3806E700A84E4F /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		C7715FBF1F3806E700A84E4F /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		C7715FC11F3809DE00A84E4F /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
@@ -178,6 +179,7 @@
 				C77E28FE1F332EF700F96DCD /* Info.plist */,
 				C77E28FF1F332EF700F96DCD /* lb.plist */,
 				C77E29031F332EF700F96DCD /* main.m */,
+				C72838291F394F4E00FB607E /* HLBJGJJ_PrefixHeader.pch */,
 				C77E29121F332EF700F96DCD /* Resource */,
 			);
 			path = HLBJGJJ;
@@ -419,7 +421,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CE24F4A691D26418E9C15588 /* [CP] Embed Pods Frameworks */ = {
@@ -574,6 +576,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = M675EFBDE2;
+				GCC_PREFIX_HEADER = ./HLBJGJJ/HLBJGJJ_PrefixHeader.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/HLBJGJJ/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lhl.hlbjgjj;
@@ -592,6 +595,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = M675EFBDE2;
+				GCC_PREFIX_HEADER = ./HLBJGJJ/HLBJGJJ_PrefixHeader.pch;
 				INFOPLIST_FILE = "$(SRCROOT)/HLBJGJJ/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lhl.hlbjgjj;
