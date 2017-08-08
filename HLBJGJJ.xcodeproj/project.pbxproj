@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C728382F1F39568E00FB607E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C728382D1F39568E00FB607E /* Main.storyboard */; };
 		C7715FC01F3806E700A84E4F /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7715FBF1F3806E700A84E4F /* WebViewController.m */; };
 		C7715FC31F3809DE00A84E4F /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C7715FC21F3809DE00A84E4F /* UserInfo.m */; };
 		C7715FCA1F38493100A84E4F /* AppDefaultIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = C7715FC91F38493100A84E4F /* AppDefaultIcon.png */; };
 		C77E29191F332EF700F96DCD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C77E28D61F332EF700F96DCD /* AppDelegate.m */; };
 		C77E291A1F332EF700F96DCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C77E28D71F332EF700F96DCD /* Assets.xcassets */; };
-		C77E291C1F332EF700F96DCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C77E28DA1F332EF700F96DCD /* Main.storyboard */; };
 		C77E291D1F332EF700F96DCD /* TransDataUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C77E28DE1F332EF700F96DCD /* TransDataUIViewController.m */; };
 		C77E291E1F332EF700F96DCD /* BJGJJ.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C77E28DF1F332EF700F96DCD /* BJGJJ.xcdatamodeld */; };
 		C77E291F1F332EF700F96DCD /* CountInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C77E28E41F332EF700F96DCD /* CountInfoTableViewController.m */; };
@@ -27,7 +27,6 @@
 		C77E29281F332EF700F96DCD /* NSString+Regular.m in Sources */ = {isa = PBXBuildFile; fileRef = C77E28F91F332EF700F96DCD /* NSString+Regular.m */; };
 		C77E29291F332EF700F96DCD /* NSStringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = C77E28FB1F332EF700F96DCD /* NSStringUtils.m */; };
 		C77E292A1F332EF700F96DCD /* UIColor+MyColor.m in Sources */ = {isa = PBXBuildFile; fileRef = C77E28FD1F332EF700F96DCD /* UIColor+MyColor.m */; };
-		C77E292B1F332EF700F96DCD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C77E28FE1F332EF700F96DCD /* Info.plist */; };
 		C77E292C1F332EF700F96DCD /* lb.plist in Resources */ = {isa = PBXBuildFile; fileRef = C77E28FF1F332EF700F96DCD /* lb.plist */; };
 		C77E292D1F332EF700F96DCD /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C77E29021F332EF700F96DCD /* LoginViewController.m */; };
 		C77E292E1F332EF700F96DCD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C77E29031F332EF700F96DCD /* main.m */; };
@@ -52,6 +51,8 @@
 		48EEE92535826E05FF33352B /* Pods-HLBJGJJ.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLBJGJJ.release.xcconfig"; path = "Pods/Target Support Files/Pods-HLBJGJJ/Pods-HLBJGJJ.release.xcconfig"; sourceTree = "<group>"; };
 		7A1ABC23F2626AA9635A268E /* Pods-HLBJGJJ.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLBJGJJ.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HLBJGJJ/Pods-HLBJGJJ.debug.xcconfig"; sourceTree = "<group>"; };
 		C72838291F394F4E00FB607E /* HLBJGJJ_PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLBJGJJ_PrefixHeader.pch; sourceTree = "<group>"; };
+		C728382B1F3955DB00FB607E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C728382E1F39568E00FB607E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C7715FBE1F3806E700A84E4F /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		C7715FBF1F3806E700A84E4F /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		C7715FC11F3809DE00A84E4F /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
@@ -60,7 +61,6 @@
 		C77E28D51F332EF700F96DCD /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C77E28D61F332EF700F96DCD /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		C77E28D71F332EF700F96DCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C77E28DB1F332EF700F96DCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C77E28DD1F332EF700F96DCD /* TransDataUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransDataUIViewController.h; sourceTree = "<group>"; };
 		C77E28DE1F332EF700F96DCD /* TransDataUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransDataUIViewController.m; sourceTree = "<group>"; };
 		C77E28E01F332EF700F96DCD /* BJGJJ.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BJGJJ.xcdatamodel; sourceTree = "<group>"; };
@@ -88,7 +88,6 @@
 		C77E28FB1F332EF700F96DCD /* NSStringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringUtils.m; sourceTree = "<group>"; };
 		C77E28FC1F332EF700F96DCD /* UIColor+MyColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MyColor.h"; sourceTree = "<group>"; };
 		C77E28FD1F332EF700F96DCD /* UIColor+MyColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MyColor.m"; sourceTree = "<group>"; };
-		C77E28FE1F332EF700F96DCD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C77E28FF1F332EF700F96DCD /* lb.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = lb.plist; sourceTree = "<group>"; };
 		C77E29011F332EF700F96DCD /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		C77E29021F332EF700F96DCD /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
@@ -165,8 +164,8 @@
 			children = (
 				C77E28D51F332EF700F96DCD /* AppDelegate.h */,
 				C77E28D61F332EF700F96DCD /* AppDelegate.m */,
+				C728382D1F39568E00FB607E /* Main.storyboard */,
 				C77E28D71F332EF700F96DCD /* Assets.xcassets */,
-				C77E28DA1F332EF700F96DCD /* Main.storyboard */,
 				C77E29071F332EF700F96DCD /* Request */,
 				C77E29041F332EF700F96DCD /* NavigationController */,
 				C77E29001F332EF700F96DCD /* Login */,
@@ -176,7 +175,7 @@
 				C77E28DF1F332EF700F96DCD /* BJGJJ.xcdatamodeld */,
 				C77E28EF1F332EF700F96DCD /* FlatUIButton.h */,
 				C77E28F01F332EF700F96DCD /* FlatUIButton.m */,
-				C77E28FE1F332EF700F96DCD /* Info.plist */,
+				C728382B1F3955DB00FB607E /* Info.plist */,
 				C77E28FF1F332EF700F96DCD /* lb.plist */,
 				C77E29031F332EF700F96DCD /* main.m */,
 				C72838291F394F4E00FB607E /* HLBJGJJ_PrefixHeader.pch */,
@@ -370,12 +369,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C77E293A1F332EF700F96DCD /* open_account@3x.png in Resources */,
-				C77E292B1F332EF700F96DCD /* Info.plist in Resources */,
 				C77E29361F332EF700F96DCD /* close_account@2x.png in Resources */,
-				C77E291C1F332EF700F96DCD /* Main.storyboard in Resources */,
 				C77E291A1F332EF700F96DCD /* Assets.xcassets in Resources */,
 				C77E29391F332EF700F96DCD /* open_account@2x.png in Resources */,
 				C7715FCA1F38493100A84E4F /* AppDefaultIcon.png in Resources */,
+				C728382F1F39568E00FB607E /* Main.storyboard in Resources */,
 				C77E29371F332EF700F96DCD /* close_account@3x.png in Resources */,
 				C77E292C1F332EF700F96DCD /* lb.plist in Resources */,
 				C77E29381F332EF700F96DCD /* open_account.png in Resources */,
@@ -477,10 +475,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		C77E28DA1F332EF700F96DCD /* Main.storyboard */ = {
+		C728382D1F39568E00FB607E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				C77E28DB1F332EF700F96DCD /* Base */,
+				C728382E1F39568E00FB607E /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

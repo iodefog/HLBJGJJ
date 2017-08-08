@@ -21,7 +21,7 @@
 -(instancetype)initWithCoder:(NSCoder *)aDecoder{
     if (self = [super initWithCoder:aDecoder]) {
         
-        UIColor *blueHighLightColor = [UIColor colorWithBlueHighLight];
+//        UIColor *blueHighLightColor = [UIColor colorWithBlueHighLight];
         
         
 //        [self setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
