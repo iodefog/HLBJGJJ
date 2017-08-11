@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+typedef enum : NSUInteger {
+    HLBJGJJ_Login,
+    HLBJGJJ_CountInfoVC,
+} HLBJGJJToVC;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -19,6 +24,7 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
+- (void)changeToLoginViewController:(HLBJGJJToVC)toVC;
 
 
 @end

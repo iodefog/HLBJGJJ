@@ -44,9 +44,14 @@
 }
 
 - (void)leftClicked:(UIBarButtonItem *)sender{
-    LoginViewController *loginVC = [[LoginViewController alloc] init];
-    [self.navigationController pushViewController:loginVC animated:NO];
-    [self.navigationController popToRootViewControllerAnimated:NO];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:@"是否注销登录" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *logoutAction = [UIAlertAction actionWithTitle:@"注销" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }];
+    [alertController addAction:cancelAction];
+    [alertController addAction:logoutAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "LoginViewController.h"
+#import "CountInfoViewController.h"
 
 @interface AppDelegate ()
 
@@ -133,9 +135,15 @@
     }
 }
 
-- (void)changeToLoginViewController:(BOOL)change
+- (void)changeToLoginViewController:(HLBJGJJToVC)toVC
 {
+    if(toVC == HLBJGJJ_Login){
+        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UINavigationController * loginNavC = [storyboard instantiateViewControllerWithIdentifier:@"LoginNavigationController"];
+        self.window.rootViewController = loginNavC;
+    }else {
     
+    }
 }
 
 @end

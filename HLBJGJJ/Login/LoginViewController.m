@@ -243,7 +243,7 @@
 
 - (void)helpClicked:(UIBarButtonItem *)sender{
     [AXPopoverView hideVisiblePopoverViewsAnimated:NO fromView:self.view];
-    [AXPopoverView showLabelFromRect:CGRectMake(CGRectGetWidth(self.view.bounds) - 100, 30, 100, 40) inView:self.view animated:YES duration:2 title:@"提示:" detail:@"初始密码为身份证后四位+00，客服电话12329" configuration:^(AXPopoverView *popoverView) {
+    [AXPopoverView showLabelFromRect:CGRectMake(CGRectGetWidth(self.view.bounds) - 100, 25, 100, 50) inView:self.view animated:YES duration:2 title:@"提示:" detail:@"初始密码为身份证后四位+00，客服电话12329。\n 如若提示密码或验证码错误，请多尝试几次" configuration:^(AXPopoverView *popoverView) {
         popoverView.titleTextColor = [UIColor whiteColor];
         popoverView.detailTextColor = [UIColor whiteColor];
     }];
