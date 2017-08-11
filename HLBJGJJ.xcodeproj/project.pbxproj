@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F42F0121F3DE4D100FDA23A /* icon_circle_helper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F42F0111F3DE4D100FDA23A /* icon_circle_helper@2x.png */; };
 		C728382F1F39568E00FB607E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C728382D1F39568E00FB607E /* Main.storyboard */; };
 		C7715FC01F3806E700A84E4F /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C7715FBF1F3806E700A84E4F /* WebViewController.m */; };
 		C7715FC31F3809DE00A84E4F /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C7715FC21F3809DE00A84E4F /* UserInfo.m */; };
@@ -49,6 +50,7 @@
 		26B904AEA7A73A71DC75B2E6 /* libPods-HLBJGJJ.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HLBJGJJ.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A3F44D21C565AAF0061817B /* HLBJGJJ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HLBJGJJ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		48EEE92535826E05FF33352B /* Pods-HLBJGJJ.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLBJGJJ.release.xcconfig"; path = "Pods/Target Support Files/Pods-HLBJGJJ/Pods-HLBJGJJ.release.xcconfig"; sourceTree = "<group>"; };
+		4F42F0111F3DE4D100FDA23A /* icon_circle_helper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_circle_helper@2x.png"; sourceTree = "<group>"; };
 		7A1ABC23F2626AA9635A268E /* Pods-HLBJGJJ.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLBJGJJ.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HLBJGJJ/Pods-HLBJGJJ.debug.xcconfig"; sourceTree = "<group>"; };
 		C72838291F394F4E00FB607E /* HLBJGJJ_PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLBJGJJ_PrefixHeader.pch; sourceTree = "<group>"; };
 		C728382B1F3955DB00FB607E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 		C77E29121F332EF700F96DCD /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				4F42F0111F3DE4D100FDA23A /* icon_circle_helper@2x.png */,
 				C77E29131F332EF700F96DCD /* close_account.png */,
 				C77E29141F332EF700F96DCD /* close_account@2x.png */,
 				C77E29151F332EF700F96DCD /* close_account@3x.png */,
@@ -370,6 +373,7 @@
 			files = (
 				C77E293A1F332EF700F96DCD /* open_account@3x.png in Resources */,
 				C77E29361F332EF700F96DCD /* close_account@2x.png in Resources */,
+				4F42F0121F3DE4D100FDA23A /* icon_circle_helper@2x.png in Resources */,
 				C77E291A1F332EF700F96DCD /* Assets.xcassets in Resources */,
 				C77E29391F332EF700F96DCD /* open_account@2x.png in Resources */,
 				C7715FCA1F38493100A84E4F /* AppDefaultIcon.png in Resources */,
@@ -419,7 +423,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		CE24F4A691D26418E9C15588 /* [CP] Embed Pods Frameworks */ = {

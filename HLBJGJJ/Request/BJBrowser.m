@@ -117,7 +117,20 @@
 }
 
 
+- (void)cleanCookie{
+    NSURL *url = [NSURL URLWithString:@"www.bjgjj.gov.cn"];
+    if (url) {
+        NSArray *cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url];
+        for (int i = 0; i < [cookies count]; i++) {
+            NSHTTPCookie *cookie = (NSHTTPCookie *)[cookies objectAtIndex:i];
+            [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+            
+        }
+    }
+}
+
 -(void)refreshVCodeToUIImageView:(UIImageView *)showCapImageView :(CaptchaImage)captchaImage{
+    [self cleanCookie];
     NSDictionary * headers = @{
                                @"Host"                  :@"www.bjgjj.gov.cn",
                                @"Content-Type"          :@"application/x-www-form-urlencoded",

@@ -20,6 +20,11 @@
 
 @implementation CountInfoTableViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [SVProgressHUD show];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     _browser = [[BJBrowser alloc] init];

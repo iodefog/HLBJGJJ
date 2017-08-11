@@ -25,6 +25,7 @@
                                                            NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
 
+    
     return YES;
 }
 
@@ -130,6 +131,11 @@
             abort();
         }
     }
+}
+
+- (void)changeToLoginViewController:(BOOL)change
+{
+    
 }
 
 @end

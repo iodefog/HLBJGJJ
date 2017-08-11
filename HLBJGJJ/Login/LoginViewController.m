@@ -13,6 +13,7 @@
 #import "CCFNavigationController.h"
 #import "CountInfoViewController.h"
 #import "Masonry.h"
+#import "AXPopoverView.h"
 
 #define kLBValue @"lb"
 #define kLBName @"lbName"
@@ -35,6 +36,9 @@
 
 @implementation LoginViewController
 
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -61,7 +65,7 @@
     self.securityBgView.layer.borderColor = [[UIColor colorWithRed:200/255. green:200/255. blue:200/255. alpha:1.0] CGColor];
     self.securityBgView.layer.borderWidth = 0.5;
 
-   
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_circle_helper"] style:UIBarButtonItemStyleDone target:self action:@selector(helpClicked:)];
     
     [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top).offset(74);
@@ -193,16 +197,16 @@
     
     _browser = [[BJBrowser alloc] init];
     
-    [_browser refreshVCodeToUIImageView:_securityCode :^(UIImage *captchaImage) {
-        
-        CaptchaBrowser * captcha = [[CaptchaBrowser alloc] init];
-        [captcha captchaToText:captchaImage response:^(BOOL success, NSString *captchaText) {
-            NSLog(@" 验证码 解析结果： %@     %@", success ? @"YES" : @"NO", captchaText);
-            if (success) {
-                _code.text = captchaText;
-            }
-        }];
-    }];
+//    [_browser refreshVCodeToUIImageView:_securityCode :^(UIImage *captchaImage) {
+//        
+//        CaptchaBrowser * captcha = [[CaptchaBrowser alloc] init];
+//        [captcha captchaToText:captchaImage response:^(BOOL success, NSString *captchaText) {
+//            NSLog(@" 验证码 解析结果： %@     %@", success ? @"YES" : @"NO", captchaText);
+//            if (success) {
+//                _code.text = captchaText;
+//            }
+//        }];
+//    }];
     
     NSString * defaultName = [[NSUserDefaults standardUserDefaults] valueForKey:kLBName];
     
@@ -224,13 +228,25 @@
         _password.text = password;
     }
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidEnterBackgroundNotification:) name:UIApplicationDidEnterBackgroundNotification object:nil];
 
 }
 
+- (void)applicationDidEnterBackgroundNotification:(NSNotification *)nofication{
+    [self refreshSecurityCode:nil];
+}
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [super touchesEnded:touches withEvent:event];
     [[UIApplication sharedApplication].keyWindow endEditing:YES];
+}
+
+- (void)helpClicked:(UIBarButtonItem *)sender{
+    [AXPopoverView hideVisiblePopoverViewsAnimated:NO fromView:self.view];
+    [AXPopoverView showLabelFromRect:CGRectMake(CGRectGetWidth(self.view.bounds) - 100, 30, 100, 40) inView:self.view animated:YES duration:2 title:@"提示:" detail:@"初始密码为身份证后四位+00，客服电话12329" configuration:^(AXPopoverView *popoverView) {
+        popoverView.titleTextColor = [UIColor whiteColor];
+        popoverView.detailTextColor = [UIColor whiteColor];
+    }];
 }
 
 - (IBAction)refreshSecurityCode:(id)sender {
@@ -272,21 +288,22 @@
     [pref setValue:_cardNumber.text forKey:[kCardNumber stringByAppendingString:lb]];
     [pref setValue:_password.text forKey:[kCardPassward stringByAppendingString:lb]];
     
-    __block BJBrowser * browser =  _browser;
-    
+    __weak __block BJBrowser * browser =  _browser;
+    __weak typeof(self) mySelf = self;
     [_browser loginWithCard:lb number:_cardNumber.text andPassword:_password.text andSecurityCode:_code.text status:^(NSArray<StatusBean *> *statusList) {
         
         if (statusList.count == 0 ) {
             [SVProgressHUD showErrorWithStatus:@"密码或者验证码错误"];
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC), dispatch_get_global_queue(0, 0), ^{
                 [SVProgressHUD dismiss];
+                [mySelf refreshSecurityCode:nil];
             });
             return ;
         }else{
             [SVProgressHUD dismiss];
         }
         
-        CCFNavigationController * root = (CCFNavigationController*)self.navigationController;
+        CCFNavigationController * root = (CCFNavigationController*)mySelf.navigationController;
         
         UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         CountInfoViewController * infoController = [storyboard instantiateViewControllerWithIdentifier:@"CountInfoViewController"];
@@ -295,7 +312,7 @@
         infoController.data = dataArray;
         [root setRootViewController:infoController];
        
-        __block CountInfoViewController * blockController = infoController;
+       __weak __block CountInfoViewController * blockController = infoController;
         StatusBean *bean = statusList.firstObject;
         if (bean) {
             [browser refreshGlobalInfo:bean.companyLink status:^(NSArray *statusList) {
@@ -324,9 +341,9 @@
         NSString * name = [_lbList valueForKey:key];
         UIAlertAction *action = [UIAlertAction actionWithTitle:name style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
             NSUserDefaults * pref = [NSUserDefaults standardUserDefaults];
-            [pref setValue:key forKey:kLBName];
+            [pref setValue:key forKey:kLBValue];
             [pref setValue:name forKey:kLBName];
-            
+            [pref synchronize];
             _cardNumber.placeholder = name;
             [self.loginTypeButton setTitle:name forState:UIControlStateNormal];
 
@@ -338,7 +355,6 @@
             if (password != nil) {
                 _password.text = password;
             }
-            
         }];
         [insertPhotoController addAction:action];
     }
@@ -367,9 +383,11 @@
 
 #pragma mark - textfile delegate
 - (BOOL)textFieldShouldClear:(UITextField *)textField{
-    _cardNumber.text = nil;
-    _password.text = nil;
-    [NSUserDefaults resetStandardUserDefaults];
+    if (textField.tag == 1000) {
+        _cardNumber.text = nil;
+        _password.text = nil;
+        [NSUserDefaults resetStandardUserDefaults];
+    }
     return YES;
 }
 

@@ -8,6 +8,7 @@ pod 'IGHTMLQuery', '~> 0.8.4'
 #pod 'MJRefresh', '~> 3.0.8'
 pod 'Masonry', '~> 1.0.2'
 pod 'SVProgressHUD'
+pod 'AXPopoverView', '~> 0.6.2'
 #pod 'Firebase/Core'
 #pod 'Firebase/AdMob'
 
