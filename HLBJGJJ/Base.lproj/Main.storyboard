@@ -51,7 +51,7 @@
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="登录">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="login:" destination="4Sx-Cy-QX2" eventType="touchUpInside" id="MNh-F8-qBA"/>
@@ -143,6 +143,7 @@
                         <outlet property="passworldLabel" destination="F30-86-FHP" id="U28-L9-nXw"/>
                         <outlet property="securityBgView" destination="xlZ-bI-h86" id="SvU-9o-PQr"/>
                         <outlet property="securityCode" destination="Sg4-xs-XpS" id="P8E-HK-mIW"/>
+                        <outlet property="securityRefreshButton" destination="jBT-6j-GLN" id="QJc-8N-agR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JXd-zT-eHZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

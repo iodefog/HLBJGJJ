@@ -26,8 +26,7 @@
     
     BJBrowser * _browser;
     NSMutableDictionary *_lbList;
-    
-    
+    __weak IBOutlet UIButton *securityRefreshButton;
 }
 
 //@property(nonatomic, strong) GADInterstitial *interstitial;
@@ -137,6 +136,10 @@
         make.width.mas_equalTo(80);
         make.height.mas_equalTo(30);
         make.centerX.equalTo(self.view.mas_centerX).offset(-60);
+    }];
+    
+    [securityRefreshButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.securityCode);
     }];
     
     [self.code mas_makeConstraints:^(MASConstraintMaker *make) {
