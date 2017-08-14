@@ -349,12 +349,8 @@
 
             NSString * number = [pref valueForKey:[kCardNumber stringByAppendingString:key]];
             NSString * password = [pref valueForKey:[kCardPassward stringByAppendingString:key]];
-            if (number != nil) {
-                _cardNumber.text = number;
-            }
-            if (password != nil) {
-                _password.text = password;
-            }
+            _cardNumber.text = number;
+            _password.text = password;
         }];
         [insertPhotoController addAction:action];
     }
@@ -386,7 +382,11 @@
     if (textField.tag == 1000) {
         _cardNumber.text = nil;
         _password.text = nil;
-        [NSUserDefaults resetStandardUserDefaults];
+        
+        NSString * lb = [[NSUserDefaults standardUserDefaults] valueForKey:kLBValue];
+        lb = lb?:@"1";
+        [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:[kCardNumber stringByAppendingString:lb]];
+        [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:[kCardPassward stringByAppendingString:lb]];
     }
     return YES;
 }
