@@ -10,9 +10,14 @@
 #import <UIKit/UIKit.h>
 #import "StatusBean.h"
 
+#define kChoice @"http://www.bjgjj.gov.cn/wsyw/wscx/gjjcx-choice.jsp"
+#define kSecruityCode @"http://www.bjgjj.gov.cn/wsyw/servlet/PicCheckCode1"
+#define kLoginUrl @"http://www.bjgjj.gov.cn/wsyw/wscx/gjjcx-login.jsp"
+#define kLKUrl @"http://www.bjgjj.gov.cn/wsyw/wscx/asdwqnasmdnams.jsp"
+
 
 typedef void(^Response) (NSArray* statusList);
-typedef void(^CaptchaImage) (UIImage* captchaImage);
+typedef void(^CaptchaImage) (UIImage* captchaImage, NSString *captchaText);
 
 @interface BJBrowser : NSObject
 
@@ -21,7 +26,7 @@ typedef void(^CaptchaImage) (UIImage* captchaImage);
 -(void)refreshGlobalInfo:(NSString *)link status:(Response)statusList;
 
 
--(void)refreshVCodeToUIImageView:(UIImageView* )showCapImageView :(CaptchaImage)captchaImage;
+-(void)refreshVCodeToUIImageView:(UIImageView* )showCapImageView:(CaptchaImage)captchaImage ;
 
 
 @end

@@ -14,6 +14,7 @@
 #import "CountInfoViewController.h"
 #import "Masonry.h"
 #import "AXPopoverView.h"
+#import "UIKit+AFNetworking.h"
 
 #define kLBValue @"lb"
 #define kLBName @"lbName"
@@ -50,6 +51,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"住房公积金查询";
+    
     self.iconView.image = [UIImage imageNamed:@"AppDefaultIcon"];
     
     self.loginTypeBgView.layer.cornerRadius = 5;
@@ -68,7 +71,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon_circle_helper"] style:UIBarButtonItemStyleDone target:self action:@selector(helpClicked:)];
     
     [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.mas_top).offset(74);
+        make.top.equalTo(self.view.mas_top).offset(kNavgiationBarHeight+10);
         make.centerX.equalTo(self.view.mas_centerX);
         make.width.mas_lessThanOrEqualTo(350);
         make.height.equalTo(self.iconView.mas_width);
@@ -136,7 +139,7 @@
     }];
     
     [self.securityCode mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.securityBgView.mas_bottom).offset(30);
+        make.top.equalTo(self.securityBgView.mas_bottom).offset(15);
         make.width.mas_equalTo(80);
         make.height.mas_equalTo(30);
         make.centerX.equalTo(self.view.mas_centerX).offset(-60);
@@ -149,7 +152,14 @@
     [self.code mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(80);
         make.height.mas_equalTo(30);
-        make.centerX.equalTo(self.view.mas_centerX).offset(60);
+        make.left.equalTo(self.securityCode.mas_right).offset(15);
+        make.centerY.equalTo(self.securityCode.mas_centerY);
+    }];
+    
+    [self.refreshCodeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(32);
+        make.height.mas_equalTo(30);
+        make.left.equalTo(self.code.mas_right).offset(15);
         make.centerY.equalTo(self.securityCode.mas_centerY);
     }];
     
@@ -243,32 +253,40 @@
 
 - (void)helpClicked:(UIBarButtonItem *)sender{
     [AXPopoverView hideVisiblePopoverViewsAnimated:NO fromView:self.view];
-    [AXPopoverView showLabelFromRect:CGRectMake(CGRectGetWidth(self.view.bounds) - 100, 25, 100, 50) inView:self.view animated:YES duration:2 title:@"提示:" detail:@"初始密码为身份证后四位+00，客服电话12329。\n 如若提示密码或验证码错误，请多尝试几次" configuration:^(AXPopoverView *popoverView) {
+    [AXPopoverView showLabelFromRect:CGRectMake(CGRectGetWidth(self.view.bounds) - 100, 40, 100, 50) inView:self.view animated:YES duration:2 title:@"提示:" detail:@"初始密码为身份证后四位+00，客服电话12329。\n 如若提示密码或验证码错误，请多尝试几次" configuration:^(AXPopoverView *popoverView) {
         popoverView.titleTextColor = [UIColor whiteColor];
         popoverView.detailTextColor = [UIColor whiteColor];
     }];
 }
 
 - (IBAction)refreshSecurityCode:(id)sender {
-    [_browser refreshVCodeToUIImageView:_securityCode :^(UIImage *captchaImage) {
-        CaptchaBrowser * captcha = [[CaptchaBrowser alloc] init];
-        [captcha captchaToText:captchaImage response:^(BOOL success, NSString *captchaText) {
-            NSLog(@" 验证码 解析结果： %@     %@", success ? @"YES" : @"NO", captchaText);
-            if (success) {
+    //    if (_securityCode.image) {
+    
+            
+            [_browser refreshVCodeToUIImageView:_securityCode :^(UIImage *captchaImage, NSString *captchaText) {
                 _code.text = captchaText;
-            }
-        }];
-    }];
+            }];
+//        }
+//    }];
+    //            [captcha captchaToText:captchaImage response:^(BOOL success, NSString *captchaText) {
+    //                NSLog(@" 验证码 解析结果： %@     %@", success ? @"YES" : @"NO", captchaText);
+//                    if (success) {
+//                        _code.text = captchaText;
+//                    }
+    //            }];
+    //        }];
+    //    }
+    
 }
 
 - (IBAction)login:(id)sender {
     [[UIApplication sharedApplication].keyWindow endEditing:YES];
     
-    if (!_cardNumber.text) {
+    if (!_cardNumber.text || _cardNumber.text.length == 0) {
         [SVProgressHUD showErrorWithStatus:@"请填写账户"];
         return;
     }
-    else if (!_password.text) {
+    else if (!_password.text || _cardNumber.text.length == 0) {
         [SVProgressHUD showErrorWithStatus:@"请输入密码"];
         return;
     }
@@ -316,14 +334,14 @@
         StatusBean *bean = statusList.firstObject;
         if (bean) {
             [browser refreshGlobalInfo:bean.companyLink status:^(NSArray *statusList) {
-                for (NSUInteger i = 0 ; i < statusList.count ; i ++ ) {
-                    NSString *str = [(id)statusList[i] stringByReplacingOccurrencesOfString:@" " withString:@""];
+//                for (NSUInteger i = 0 ; i < statusList.count ; i ++ ) {
+//                    NSString *str = [(id)statusList[i] stringByReplacingOccurrencesOfString:@" " withString:@""];
                     
-                    if ([str hasPrefix: @"姓名"]) {
-                        self.title = [NSString stringWithFormat:@"%@的开户单位",statusList[i+1]];
-                        break;
-                    }
-                }
+//                    if ([str hasPrefix: @"姓名"]) {
+//                        self.title = [NSString stringWithFormat:@"%@的开户单位",statusList[i+1]];
+//                        break;
+//                    }
+//                }
                 
                 [blockController.data insertObject:@[statusList] atIndex:0];
                 [blockController.tableView reloadData];
@@ -392,10 +410,10 @@
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
-    if([[self class] deviceIsPhone]){
+    if([[self class] deviceIsPhone] && is_iphone5){
         
         [self.iconView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view.mas_top).offset(74-216);
+            make.top.equalTo(self.view.mas_top).offset(kNavgiationBarHeight+10-216);
             make.centerX.equalTo(self.view.mas_centerX);
             make.width.mas_lessThanOrEqualTo(350);
             make.height.equalTo(self.iconView.mas_width);
@@ -406,10 +424,10 @@
 }
 
 -  (void)textFieldDidEndEditing:(UITextField *)textField{
-    if([[self class] deviceIsPhone]){
+    if([[self class] deviceIsPhone] && is_iphone5){
         
         [self.iconView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.view.mas_top).offset(74);
+            make.top.equalTo(self.view.mas_top).offset(kNavgiationBarHeight+10);
             make.centerX.equalTo(self.view.mas_centerX);
             make.width.mas_lessThanOrEqualTo(350);
             make.height.equalTo(self.iconView.mas_width);

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="h9v-1e-EsQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="h9v-1e-EsQ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,11 +24,11 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sg4-xs-XpS">
                                 <rect key="frame" x="79" y="488" width="90" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.75370406450000005" green="0.76163779149999999" blue="0.76163779149999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jBT-6j-GLN" userLabel="刷新">
                                 <rect key="frame" x="79" y="488" width="90" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
@@ -40,7 +40,7 @@
                                 <rect key="frame" x="200" y="488" width="97" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <outlet property="delegate" destination="4Sx-Cy-QX2" id="Xmg-Xz-bWC"/>
                                 </connections>
@@ -125,6 +125,15 @@
                                     <outlet property="delegate" destination="4Sx-Cy-QX2" id="Tzj-RB-yzn"/>
                                 </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="brV-Hm-20e">
+                                <rect key="frame" x="301" y="491" width="70" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="refresh_normal"/>
+                                <state key="highlighted" image="refresh_highted"/>
+                                <connections>
+                                    <action selector="refreshSecurityCode:" destination="4Sx-Cy-QX2" eventType="touchUpInside" id="f0r-jf-0xi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -141,6 +150,7 @@
                         <outlet property="loginTypeLabel" destination="wQW-QT-ciM" id="IBT-DB-OdS"/>
                         <outlet property="password" destination="CZw-n2-Zlj" id="HTP-Mj-wxd"/>
                         <outlet property="passworldLabel" destination="F30-86-FHP" id="U28-L9-nXw"/>
+                        <outlet property="refreshCodeButton" destination="brV-Hm-20e" id="sHH-mo-H2s"/>
                         <outlet property="securityBgView" destination="xlZ-bI-h86" id="SvU-9o-PQr"/>
                         <outlet property="securityCode" destination="Sg4-xs-XpS" id="P8E-HK-mIW"/>
                         <outlet property="securityRefreshButton" destination="jBT-6j-GLN" id="QJc-8N-agR"/>
@@ -177,7 +187,7 @@
             <objects>
                 <navigationController id="vO6-SN-mQw" customClass="CCFNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ym4-hA-kUI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -193,7 +203,7 @@
             <objects>
                 <navigationController storyboardIdentifier="LoginNavigationController" id="h9v-1e-EsQ" customClass="CCFNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yP7-fl-6yr">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -205,4 +215,8 @@
             <point key="canvasLocation" x="-1288" y="-13"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="refresh_highted" width="16" height="16"/>
+        <image name="refresh_normal" width="16" height="16"/>
+    </resources>
 </document>

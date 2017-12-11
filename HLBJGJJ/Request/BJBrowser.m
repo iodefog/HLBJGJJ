@@ -7,6 +7,7 @@
 //
 
 #import "BJBrowser.h"
+#import "CaptchaBrowser.h"
 
 #import <UIImageView+AFNetworking.h>
 #import <AFImageDownloader.h>
@@ -16,10 +17,6 @@
 #import "Browser.h"
 #import "HtmlPraser.h"
 
-#define kChoice @"http://www.bjgjj.gov.cn/wsyw/wscx/gjjcx-choice.jsp"
-#define kSecruityCode @"http://www.bjgjj.gov.cn/wsyw/servlet/PicCheckCode1"
-#define kLoginUrl @"http://www.bjgjj.gov.cn/wsyw/wscx/gjjcx-login.jsp"
-#define kLKUrl @"http://www.bjgjj.gov.cn/wsyw/wscx/asdwqnasmdnams.jsp"
 
 #define HLUserAgent @"bjgjj/20160701 CFNetwork/878.2 Darwin/17.0.0"
 #define HLHost @"www.bjgjj.gov.cn"
@@ -34,6 +31,7 @@
     NSString * _cookie;
     NSString * _lk;
     HtmlPraser *_praser;
+    CaptchaBrowser * _captcha;
 }
 
 
@@ -115,7 +113,7 @@
     }
 }
 
--(void)refreshVCodeToUIImageView:(UIImageView *)showCapImageView :(CaptchaImage)captchaImage{
+-(void)refreshVCodeToUIImageView:(UIImageView *)showCapImageView :(CaptchaImage)captchaImage {
     [self cleanCookie];
     NSDictionary * headers = @{
                                @"Host"                  :HLHost,
@@ -126,6 +124,13 @@
                                @"Accept-Encoding"       :HLEncoding,
                                @"Accept"                :HLAccept,
                                };
+    
+    if (!_captcha) {
+        _captcha = [[CaptchaBrowser alloc] init];
+    }
+    
+    
+    __weak CaptchaBrowser * captcha = _captcha;
     
     [_browser GET:kLoginUrl headers:headers response:^(NSString *responseHtml) {
         
@@ -147,33 +152,48 @@
         
         [self refreshLK];
         
-        AFImageDownloader *downloader = [[showCapImageView class] sharedImageDownloader];
-        id <AFImageRequestCache> imageCache = downloader.imageCache;
-        [imageCache removeImageWithIdentifier:kSecruityCode];
         
+//        [captcha captchaToTextFromUrl:kSecruityCode response:^(BOOL success, NSString *captchaText, NSString *imageUrl) {
+//            NSLog(@" 验证码 解析结果： %@     %@", success ? @"YES" : @"NO", captchaText);
         
-        NSURL *URL = [NSURL URLWithString:kSecruityCode];
-        
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
-        [request setValue:_cookie forHTTPHeaderField:@"Cookie"];
-        [request setValue:@"image/webp,image/*,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
-        [request setValue:HLUserAgent forHTTPHeaderField:@"User-Agent"];
-        [request setValue:kLoginUrl forHTTPHeaderField:@"Referer"];
-        
-        
-        UIImageView * view = showCapImageView;
-        
-        [showCapImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+            AFImageDownloader *downloader = [[showCapImageView class] sharedImageDownloader];
+            id <AFImageRequestCache> imageCache = downloader.imageCache;
+            [imageCache removeImageWithIdentifier:kSecruityCode];
             
-            [view setImage:image];
             
-            captchaImage(image);
+            NSURL *URL = [NSURL URLWithString:kSecruityCode];
             
-        } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:URL];
+            [request setValue:_cookie forHTTPHeaderField:@"Cookie"];
+            [request setValue:@"image/webp,image/*,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+            [request setValue:HLUserAgent forHTTPHeaderField:@"User-Agent"];
+            [request setValue:kLoginUrl forHTTPHeaderField:@"Referer"];
             
-        }];
-        
-        
+            
+            UIImageView * view = showCapImageView;
+            
+            
+            [showCapImageView setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+                
+                
+                NSMutableURLRequest *cacheRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:kSecruityCode]];
+                [cacheRequest setValue:_cookie forHTTPHeaderField:@"Cookie"];
+                [cacheRequest setValue:@"image/webp,image/*,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+                [cacheRequest setValue:HLUserAgent forHTTPHeaderField:@"User-Agent"];
+                [cacheRequest setValue:kLoginUrl forHTTPHeaderField:@"Referer"];
+                [imageCache removeImageforRequest:cacheRequest withAdditionalIdentifier:kSecruityCode];
+                
+                [imageCache addImage:image forRequest:cacheRequest withAdditionalIdentifier:nil];
+                
+                [view setImage:image];
+                
+                captchaImage(image, @"");
+                
+            } failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+                
+            }];
+            
+//        }];
         
     }];
 }

@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *loginTypeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cardLabel;
 @property (weak, nonatomic) IBOutlet UILabel *passworldLabel;
+@property (weak, nonatomic) IBOutlet UIButton *refreshCodeButton;
 
 //@property (weak, nonatomic) IBOutlet GADBannerView *adView;
 
